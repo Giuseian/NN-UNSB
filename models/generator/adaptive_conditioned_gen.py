@@ -1,7 +1,7 @@
 from models.helper_functions import * 
 import functools 
 
-# Resnet with conditioning : Simplified version of UNSB Conditional Resnet 
+# Resnet with Adaptive conditioning : Simplified version of UNSB Conditional Resnet 
 
 
 class ResnetBlockCond(nn.Module):
