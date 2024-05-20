@@ -3,7 +3,6 @@ import functools
 
 # Resnet with Adaptive conditioning : Simplified version of UNSB Conditional Resnet 
 
-
 class ResnetBlockCond(nn.Module):
     def __init__(self, dim, norm_layer, temb_dim, z_dim):
         super(ResnetBlockCond, self).__init__()
