@@ -1,6 +1,8 @@
 import torch.nn as nn
 from models.helper_functions import *
 
+# simple resnet Generator (simplified version of UNSB Resnet Generator)
+
 # Basic Block for Generator
 class ResnetBlock(nn.Module):
     def __init__(self, dim, padding_type, norm_layer, use_dropout):
