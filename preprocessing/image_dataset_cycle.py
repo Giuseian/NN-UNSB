@@ -8,7 +8,12 @@ import random
 from torch.autograd import Variable
 import torchvision.transforms as transforms
 
+# Image transformations utilities
+img_height = 256
+img_width = 256
+debug_mode = False
 
+# Convert grayscale images to rgb
 def to_rgb(image):
     rgb_image = Image.new("RGB", image.size)
     rgb_image.paste(image)
@@ -37,7 +42,7 @@ class ReplayBuffer:
                     to_return.append(element)
         return Variable(torch.cat(to_return))
     
-# Image transformations
+# Image transformations 
 transforms_ = [
     transforms.Resize(int(img_height * 1.12), Image.BICUBIC),
     transforms.RandomCrop((img_height, img_width)),
@@ -46,6 +51,7 @@ transforms_ = [
     transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5)),
 ]
 
+# Image dataset class
 class ImageDataset(Dataset):
     def __init__(self, root, transforms_=None, unaligned=False, mode="train"):
         print("root",root)
