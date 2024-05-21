@@ -14,7 +14,7 @@ class NLayerDiscriminator_ncsn(nn.Module):
             n_layers (int)  -- the number of conv layers in the discriminator
             norm_layer      -- normalization layer
         """
-        super(NLayerDiscriminator_ncsn_new, self).__init__()
+        super(NLayerDiscriminator_ncsn, self).__init__()
         use_bias = norm_layer == nn.InstanceNorm2d
 
         self.no_antialias = no_antialias
