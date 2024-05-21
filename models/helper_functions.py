@@ -4,7 +4,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 import math 
 
-
+# helper functions
 def get_pad_layer(pad_type):
     if pad_type in ['reflect', 'refl']:
         return nn.ReflectionPad2d
@@ -70,6 +70,9 @@ class TimestepEmbedding(nn.Module):
         self.fc2 = nn.Linear(hidden_dim, output_dim)
 
     def forward(self, t):
+        if t.dim() == 1:
+            t = t.unsqueeze(-1)
+        t = t.float()  # Ensure t is of type float
         t = self.fc1(t)
         t = self.act(t)
         t = self.fc2(t)

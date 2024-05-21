@@ -2,7 +2,7 @@ import torch
 import torch.nn as nn
 from models.helper_functions import * 
 
-class NLayerDiscriminator_ncsn(nn.Module):
+class NLayerDiscriminator_ncsn_new(nn.Module):
     """Defines a PatchGAN discriminator with conditional input"""
 
     def __init__(self, input_nc, ndf=64, n_layers=3, norm_layer=nn.BatchNorm2d, no_antialias=False):
@@ -14,7 +14,7 @@ class NLayerDiscriminator_ncsn(nn.Module):
             n_layers (int)  -- the number of conv layers in the discriminator
             norm_layer      -- normalization layer
         """
-        super(NLayerDiscriminator_ncsn, self).__init__()
+        super(NLayerDiscriminator_ncsn_new, self).__init__()
         use_bias = norm_layer == nn.InstanceNorm2d
 
         self.no_antialias = no_antialias
@@ -60,7 +60,7 @@ class NLayerDiscriminator_ncsn(nn.Module):
         
         self.final_conv = nn.Conv2d(ndf * nf_mult, 1, kernel_size=4, stride=1, padding=1)
         self.t_embed = TimestepEmbedding(
-            embedding_dim=4 * ndf,
+            embedding_dim=1,
             hidden_dim=4 * ndf,
             output_dim=4 * ndf,
             act=nn.LeakyReLU(0.2)
@@ -68,6 +68,7 @@ class NLayerDiscriminator_ncsn(nn.Module):
 
     def forward(self, input, t_emb, input2=None):
         """Forward pass of the discriminator"""
+        t_emb = t_emb.float()  # Ensure t_emb is of type float
         t_emb = self.t_embed(t_emb)
         if input2 is not None:
             out = torch.cat([input, input2], dim=1)
@@ -81,5 +82,3 @@ class NLayerDiscriminator_ncsn(nn.Module):
                 out = layer(out)
         
         return self.final_conv(out)
-    
-
