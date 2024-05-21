@@ -1,9 +1,10 @@
 import torch
 import torch.nn as nn
+from models.helper_functions import * 
 
 # simple Discrminator used with the Injection conditioned simple generator
 
-class NLayerDiscriminator_ncsn(nn.Module):
+class D_NLayersMulti(nn.Module):
     def __init__(self, input_nc, ndf=64, n_layers=3, norm_layer=nn.BatchNorm2d):
         super().__init__()
         self.layers = nn.ModuleList()

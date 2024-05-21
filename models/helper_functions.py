@@ -5,7 +5,6 @@ import torch.nn.functional as F
 import math 
 
 
-
 def get_pad_layer(pad_type):
     if pad_type in ['reflect', 'refl']:
         return nn.ReflectionPad2d
@@ -46,3 +45,18 @@ class AdaptiveLayer(nn.Module):
         gamma, beta = gamma.unsqueeze(2).unsqueeze(3), beta.unsqueeze(2).unsqueeze(3)
         return gamma * input + beta
 
+class ConvBlock_cond(nn.Module):
+    def __init__(self, in_channels, out_channels, embedding_dim, kernel_size=3, stride=1, padding=1, use_bias=True, norm_layer=nn.BatchNorm2d, downsample=True):
+        super(ConvBlock_cond, self).__init__()
+        self.conv = nn.Conv2d(in_channels, out_channels, kernel_size, stride, padding, bias=use_bias)
+        self.norm = norm_layer(out_channels)
+        self.act = nn.LeakyReLU(0.2, inplace=True)
+        self.downsample = downsample
+
+    def forward(self, x, t_emb):
+        out = self.conv(x)
+        out = self.norm(out)
+        out = self.act(out)
+        if self.downsample:
+            out = nn.functional.avg_pool2d(out, kernel_size=2, stride=2)
+        return out
