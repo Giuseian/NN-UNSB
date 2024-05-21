@@ -49,5 +49,5 @@ class D_NLayersMulti(nn.Module):
             result = layer(result)
             t_emb_channel_specific = t_emb_transform(t_emb).view(t_emb.size(0), -1, 1, 1)
             t_emb_channel_specific = t_emb_channel_specific.expand(-1, -1, result.size(2), result.size(3))
-            result = result + t_emb_channel_specific  # Use out-of-place addition
+            result = result + t_emb_channel_specific  
         return self.final_layer(result)
