@@ -18,7 +18,6 @@ train_datasetB = ImageDataset(img_dir=path_trainB)
 train_dataloaderB = DataLoader(train_datasetB, batch_size=1, shuffle=True)
 
 # Initialize generator and discriminator
-#gen = ResnetGenerator_ncsn(input_nc=3, output_nc=3, ngf=64, n_blocks=9, norm_layer=nn.InstanceNorm2d).to(device)
 gen = ResnetGenerator_cond(input_nc=3, output_nc=3, ngf=64, n_blocks=9, norm_layer=nn.InstanceNorm2d).to(device)
 disc = NLayerDiscriminator_ncsn_new(input_nc=3, ndf=64, n_layers=3, norm_layer=nn.InstanceNorm2d).to(device)
 
