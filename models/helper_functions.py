@@ -60,3 +60,17 @@ class ConvBlock_cond(nn.Module):
         if self.downsample:
             out = nn.functional.avg_pool2d(out, kernel_size=2, stride=2)
         return out
+    
+
+class TimestepEmbedding(nn.Module):
+    def __init__(self, embedding_dim, hidden_dim, output_dim, act=nn.ReLU()):
+        super(TimestepEmbedding, self).__init__()
+        self.fc1 = nn.Linear(embedding_dim, hidden_dim)
+        self.act = act
+        self.fc2 = nn.Linear(hidden_dim, output_dim)
+
+    def forward(self, t):
+        t = self.fc1(t)
+        t = self.act(t)
+        t = self.fc2(t)
+        return t

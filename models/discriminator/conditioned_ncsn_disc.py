@@ -83,32 +83,3 @@ class NLayerDiscriminator_ncsn(nn.Module):
         return self.final_conv(out)
     
 
-# helper functions 
-class TimestepEmbedding(nn.Module):
-    def __init__(self, embedding_dim, hidden_dim, output_dim, act=nn.ReLU()):
-        super(TimestepEmbedding, self).__init__()
-        self.fc1 = nn.Linear(embedding_dim, hidden_dim)
-        self.act = act
-        self.fc2 = nn.Linear(hidden_dim, output_dim)
-
-    def forward(self, t):
-        t = self.fc1(t)
-        t = self.act(t)
-        t = self.fc2(t)
-        return t
-
-class PixelNorm(nn.Module):
-    def __init__(self):
-        super(PixelNorm, self).__init__()
-
-    def forward(self, x, epsilon=1e-8):
-        return x / torch.sqrt(torch.mean(x ** 2, dim=1, keepdim=True) + epsilon)
-
-def get_timestep_embedding(timesteps, embedding_dim):
-    half_dim = embedding_dim // 2
-    emb = torch.exp(torch.arange(half_dim, dtype=torch.float32) * -(math.log(10000) / (half_dim - 1)))
-    emb = timesteps[:, None] * emb[None, :]
-    emb = torch.cat([torch.sin(emb), torch.cos(emb)], dim=1)
-    if embedding_dim % 2 == 1:
-        emb = torch.cat([emb, torch.zeros_like(emb[:, :1])], dim=1)
-    return emb
