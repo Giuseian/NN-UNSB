@@ -2,7 +2,7 @@ import torch
 import torch.nn as nn
 from models.helper_functions import * 
 
-class NLayerDiscriminator_ncsn_new(nn.Module):
+class NLayerDiscriminator_ncsn(nn.Module):
     """Defines a PatchGAN discriminator with conditional input"""
 
     def __init__(self, input_nc, ndf=64, n_layers=3, norm_layer=nn.BatchNorm2d, no_antialias=False):

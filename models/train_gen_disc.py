@@ -17,15 +17,11 @@ path_trainB = 'datasets/horse2zebra/trainB'
 train_datasetB = ImageDataset(img_dir=path_trainB)
 train_dataloaderB = DataLoader(train_datasetB, batch_size=1, shuffle=True)
 
-# Initialize generator and discriminator
-gen = ResnetGenerator_cond(input_nc=3, output_nc=3, ngf=64, n_blocks=9, norm_layer=nn.InstanceNorm2d).to(device)
-disc = NLayerDiscriminator_ncsn_new(input_nc=3, ndf=64, n_layers=3, norm_layer=nn.InstanceNorm2d).to(device)
-
 # Initialize generators and discriminators
 gen_A_to_B = ResnetGenerator_cond(input_nc=3, output_nc=3, ngf=64, n_blocks=9, norm_layer=nn.InstanceNorm2d).to(device)
 gen_B_to_A = ResnetGenerator_cond(input_nc=3, output_nc=3, ngf=64, n_blocks=9, norm_layer=nn.InstanceNorm2d).to(device)
-disc_A = NLayerDiscriminator_ncsn_new(input_nc=3, ndf=64, n_layers=3, norm_layer=nn.InstanceNorm2d).to(device)
-disc_B = NLayerDiscriminator_ncsn_new(input_nc=3, ndf=64, n_layers=3, norm_layer=nn.InstanceNorm2d).to(device)
+disc_A = NLayerDiscriminator_ncsn(input_nc=3, ndf=64, n_layers=3, norm_layer=nn.InstanceNorm2d).to(device)
+disc_B = NLayerDiscriminator_ncsn(input_nc=3, ndf=64, n_layers=3, norm_layer=nn.InstanceNorm2d).to(device)
 
 # Define optimizers
 optimizer_gen = optim.Adam(list(gen_A_to_B.parameters()) + list(gen_B_to_A.parameters()), lr=0.0002, betas=(0.5, 0.999))
