@@ -3,6 +3,7 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 import math 
+import torch.nn.init as init
 
 # helper functions
 def get_pad_layer(pad_type):
@@ -77,3 +78,38 @@ class TimestepEmbedding(nn.Module):
         t = self.act(t)
         t = self.fc2(t)
         return t
+
+
+# helper functions for PatchSample_F
+def init_weights(net, init_gain=0.02, debug=False):
+    def init_func(m):  # define the initialization function
+        classname = m.__class__.__name__
+        if hasattr(m, 'weight') and (classname.find('Conv') != -1 or classname.find('Linear') != -1):
+            if debug:
+                print(classname)
+            init.normal_(m.weight.data, 0.0, init_gain)
+            if hasattr(m, 'bias') and m.bias is not None:
+                init.constant_(m.bias.data, 0.0)
+        elif classname.find('LayerNorm') != -1:
+            init.normal_(m.weight.data, 1.0, init_gain)
+            init.constant_(m.bias.data, 0.0)
+
+    net.apply(init_func)  # apply the initialization function <init_func>
+
+def init_net(net, init_gain=0.02, gpu_ids=[], debug=False, initialize_weights=True):
+    if len(gpu_ids) > 0:
+        assert(torch.cuda.is_available())
+        net.to(gpu_ids[0])
+    if initialize_weights:
+        init_weights(net, init_gain=init_gain, debug=debug)
+    return net
+
+class Normalize(nn.Module):
+    def __init__(self, power=2):
+        super(Normalize, self).__init__()
+        self.power = power
+
+    def forward(self, x):
+        norm = x.pow(self.power).sum(1, keepdim=True).pow(1. / self.power)
+        out = x.div(norm + 1e-7)
+        return out
