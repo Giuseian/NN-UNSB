@@ -20,7 +20,7 @@ class PatchSampleF(nn.Module):
         output_size = 12 * 256 * 256  # This matches the total elements for a 12x256x256 image
         self.mlp = nn.Sequential(
             nn.Linear(input_nc, self.nc),  # First layer
-            nn.ReLU(),
+            nn.LeakyReLU(),
             nn.Linear(self.nc, output_size)  # Adjust this layer to match the reshaping requirement
         ).to(self.device)
         self.mlp_init = True
