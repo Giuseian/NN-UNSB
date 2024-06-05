@@ -3,38 +3,64 @@ import torch.nn as nn
 import numpy as np
 from models.helper_functions import *
 
+# our simple PatchF function
+
 class PatchSampleF(nn.Module):
-    def __init__(self, use_mlp=False, init_type='normal', init_gain=0.02, nc=256, output_shape=(1, 12, 256, 256), device=None):
+    def __init__(self, use_mlp=False, init_type='normal', init_gain=0.02, nc=256, gpu_ids=[]):
         super(PatchSampleF, self).__init__()
         self.l2norm = Normalize(2)
         self.use_mlp = use_mlp
         self.nc = nc
-        self.output_shape = output_shape
-        self.device = device if device is not None else torch.device('cpu')  # Default to CPU if not specified
-        self.mlp_init = False
         self.init_type = init_type
         self.init_gain = init_gain
+        self.gpu_ids = gpu_ids
+        self.mlps = nn.ModuleList()
 
-    def create_mlp(self, input_nc):
-        # The last layer's output size must be the total number of elements in the target output shape
-        output_size = 12 * 256 * 256  # This matches the total elements for a 12x256x256 image
-        self.mlp = nn.Sequential(
-            nn.Linear(input_nc, self.nc),  # First layer
-            nn.LeakyReLU(),
-            nn.Linear(self.nc, output_size)  # Adjust this layer to match the reshaping requirement
-        ).to(self.device)
-        self.mlp_init = True
+    def create_mlp(self, feats):
+        for feat in feats:
+            input_nc = feat.shape[0]
+            mlp = nn.Sequential(
+                nn.Linear(input_nc, self.nc),
+                nn.LeakyReLU(0.2),
+                nn.Linear(self.nc, self.nc)
+            ).to(feat.device)
+            self.mlps.append(mlp)
+        init_net(self, self.init_gain, self.gpu_ids)
 
-    def forward(self, input):
-        B, C, H, W = input.shape
-        if self.use_mlp:
-            if not self.mlp_init:
-                self.create_mlp(C * H * W)  # Initialize MLP based on the input dimensions
+    def forward(self, feats, num_patches=64, patch_ids=None):
+        if self.use_mlp and len(self.mlps) == 0:
+            self.create_mlp(feats)
 
-            input_flat = input.view(B, -1)  # Flatten the input
-            input = self.mlp(input_flat)  # Pass through MLP
+        return_ids = []
+        return_feats = []
+        
+        for feat_id, feat in enumerate(feats):
+            if len(feat.shape) == 3:
+                feat = feat.unsqueeze(0)
+                
+            B, C, H, W = feat.size()
+            feat_reshape = feat.permute(0, 2, 3, 1).reshape(B, H * W, C)
 
-        input = input.view(*self.output_shape)  # Reshape to the desired output shape
-        input = self.l2norm(input)  # Normalize the output
+            if num_patches > 0:
+                if patch_ids is not None:
+                    patch_id = patch_ids[feat_id]
+                else:
+                    patch_id = np.random.permutation(feat_reshape.shape[1])[:num_patches]
+                patch_id = torch.tensor(patch_id, dtype=torch.long, device=feat.device)
+                x_sample = feat_reshape[:, patch_id, :].reshape(-1, C)
+            else:
+                x_sample = feat_reshape
+                patch_id = torch.arange(H * W, device=feat.device)
 
-        return input
+            if self.use_mlp:
+                x_sample = self.mlps[feat_id](x_sample)
+
+            x_sample = self.l2norm(x_sample)
+
+            if num_patches == 0:
+                x_sample = x_sample.view(B, H, W, -1).permute(0, 3, 1, 2)
+
+            return_ids.append(patch_id)
+            return_feats.append(x_sample)
+
+        return return_feats, return_ids

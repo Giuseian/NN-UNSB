@@ -1,5 +1,6 @@
 from models.helper_functions import *
-import numpy as np 
+
+# our dynamic PatchF  
 
 class PatchSampleF(nn.Module):
     def __init__(self, use_mlp=False, init_type='normal', init_gain=0.02, nc=256, gpu_ids=[]):
@@ -14,7 +15,7 @@ class PatchSampleF(nn.Module):
 
     def create_mlp(self, feats):
         for mlp_id, feat in enumerate(feats):
-            input_nc = feat.shape[1]
+            input_nc = feat.shape[0]
             mlp = nn.Sequential(
                 nn.Linear(input_nc, self.nc),
                 nn.LeakyReLU(0.2),
@@ -67,6 +68,3 @@ class PatchSampleF(nn.Module):
             return_feats = [f.view(B, H, W, -1).permute(0, 3, 1, 2) for f in return_feats]
 
         return return_feats, return_ids
-
-
-
