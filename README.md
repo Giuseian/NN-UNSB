@@ -7,8 +7,11 @@ TODO: tutto da sistemare, intanto ho messo una struttura principale e sto insere
 As follow is a graphical representation of the reimplemented network structure:
 ![Structure_net](images/structure_network.png)
 
-
 ## Installation 
+
+TODO: cambiare nome repo 
+TODO: cambiare link 
+TODO: nome cartella 
 
 1. Clone the repository:
    ```bash
@@ -20,11 +23,15 @@ As follow is a graphical representation of the reimplemented network structure:
     python3 -m venv virtual 
     source virtual/bin/activate
     ```
+TODO: in caso creare un file req.txt e mettere in  caso il comando per installarli nel ambiente 
 
 ## Training 
 
+TODO: qui dobbiamo inserire il codice con il quale facciamo partire il training + commenti 
 
 ## Results 
+
+TODO: cambiamo commenti e decidiamo quali plot mettere (140 , 80)  
 
 <p align="center">
   <img src="images/zebra1_results.png" alt="Zebra 1" width="30%" />
