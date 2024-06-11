@@ -1,4 +1,4 @@
-# Unpaired Neural Schrödinger Bridge
+# Unpaired Image-to-Image translation via Neural Schrödinger Bridge
 
 TODO: tutto da sistemare, intanto ho messo una struttura principale e sto inserendo all'interno di questo file le immagini che abbiamo fino ad ora. Poi scegliamo insieme cosa levare e cosa aggiungere. 
 
