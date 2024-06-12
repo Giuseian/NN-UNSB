@@ -112,6 +112,13 @@ python3 test.py --aspect_ratio 1.5
 
 ## Results 
 ### Quantitative Results
+Results on 200 epochs:
+|          | FID                | KID                |
+|------------|--------------------|--------------------|
+| Train | 195.77 | 0.135 |
+| Test  | 120.06 | 0.089 |
+
+Results on 400 epochs:
 |          | FID                | KID                |
 |------------|--------------------|--------------------|
 | Train | 197.76 | 0.131 |
