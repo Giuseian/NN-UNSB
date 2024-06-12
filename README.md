@@ -166,6 +166,10 @@ Qualitative Results on 400 epochs:
   <img src="images/zebra3_results.jpg" alt="Zebra 3" width="30%" />
 </p>
 
+## Final Obervations
+From the obtained results we realized that increasing the number of images in the dataset also increases the computational time per epoch. With 200 images for trainA and trainB, each epoch took approximately 220 seconds. With 400 images for trainA and trainB, each epoch took about 440 seconds. Given that we had only 12 hours to run a notebook on Kaggle, we decided to limit the number of epochs accordingly.
+
+Although a larger dataset allows for faster convergence, we achieved good results despite running fewer epochs than the 400 epochs used in the original paper, which utilized the entire dataset.
 
 ## Acknowledgments
 * The original paper:
