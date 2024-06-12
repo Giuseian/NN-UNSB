@@ -112,18 +112,41 @@ python3 test.py --aspect_ratio 1.5
 
 ## Results 
 ### Quantitative Results
-Results on 200 epochs:
+#### Results on 200 epochs:
 |          | FID                | KID                |
 |------------|--------------------|--------------------|
 | Train | 195.77 | 0.135 |
 | Test  | 120.06 | 0.089 |
 
-Results on 400 epochs:
+Plotting FID and KID for training:
+<p align="center">
+  <img src="images/FID_train_200.png" alt="FID" width="40%" />
+  <img src="images/KID_train_200.png" alt="KID" width="40%" />
+</p>
+
+Plotting FID and KID for testing:
+<p align="center">
+  <img src="images/FID_test_200.png" alt="FID" width="30%" />
+  <img src="images/KID_test_200.png" alt="KID" width="30%" />
+</p>
+
+#### Results on 400 epochs:
 |          | FID                | KID                |
 |------------|--------------------|--------------------|
 | Train | 197.76 | 0.131 |
 | Test  | 101.70 | 0.082 |
 
+Plotting FID and KID for training:
+<p align="center">
+  <img src="images/FID__train_400.png" alt="FID" width="40%" />
+  <img src="images/KID_train_400.png" alt="KID" width="40%" />
+</p>
+
+Plotting FID and KID for testing:
+<p align="center">
+  <img src="images/FID_test_400.png" alt="FID" width="30%" />
+  <img src="images/KID_test_400.png" alt="KID" width="30%" />
+</p>
 
 ### Qualitative Results
 Qualitative Results on 200 epochs:
@@ -138,33 +161,6 @@ Qualitative Results on 400 epochs:
   <img src="images/zebra1_400.png" alt="Zebra 1" width="30%" />
   <img src="images/zebra2_400.png" alt="Zebra 2" width="30%" />
   <img src="images/zebra3_results.jpg" alt="Zebra 3" width="30%" />
-</p>
-
-### Evaluation
-#### Results in 200 epochs
-Plotting FID and KID for training:
-<p align="center">
-  <img src="images/FID_train_200.png" alt="FID" width="40%" />
-  <img src="images/KID_train_200.png" alt="KID" width="40%" />
-</p>
-
-Plotting FID and KID for testing:
-<p align="center">
-  <img src="images/FID_test_200.png" alt="FID" width="30%" />
-  <img src="images/KID_test_200.png" alt="KID" width="30%" />
-</p>
-
-#### Results in 400 epochs
-Plotting FID and KID for training:
-<p align="center">
-  <img src="images/FID__train_400.png" alt="FID" width="40%" />
-  <img src="images/KID_train_400.png" alt="KID" width="40%" />
-</p>
-
-Plotting FID and KID for testing:
-<p align="center">
-  <img src="images/FID_test_400.png" alt="FID" width="30%" />
-  <img src="images/KID_test_400.png" alt="KID" width="30%" />
 </p>
 
 
