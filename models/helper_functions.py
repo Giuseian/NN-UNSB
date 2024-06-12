@@ -9,23 +9,6 @@ import math
 
 """ Here we define helper functions that we will use throughout the project """
 
-# Adaptive Layer used to condition Resnet 
-class AdaptiveLayer(nn.Module):
-    """ It adjusts the input feature maps using a style vector z. It computes scaling and bias terms (gamma and beta) 
-    from the style vector, which modulates the feature maps to produce style-specific effects """
-    
-    def __init__(self, in_channel, style_dim):
-        super().__init__()
-        self.style = nn.Linear(style_dim, in_channel * 2)
-        self.style.bias.data[:in_channel] = 1
-        self.style.bias.data[in_channel:] = 0
-
-    def forward(self, input, style):
-        gamma, beta = self.style(style).chunk(2, 1)
-        gamma, beta = gamma.unsqueeze(2).unsqueeze(3), beta.unsqueeze(2).unsqueeze(3)
-        return gamma * input + beta
-
-
 # Define padding layer based on type for use in convolutional layers
 def get_pad_layer(pad_type):
     if pad_type in ['reflect', 'refl']:
