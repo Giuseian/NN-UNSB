@@ -5,7 +5,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 from models.helper_functions import *
 from models.networks import *
-from preprocessing.image_dataset_cycle import *
+#from preprocessing.image_dataset_cycle import *
+from preprocessing.dataset import *
 from preprocessing.dataset import *
 from torch.utils.data import DataLoader
 

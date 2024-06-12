@@ -1,5 +1,11 @@
 """ Computing KID per epoch """ 
 
+from sklearn.metrics.pairwise import polynomial_kernel
+import numpy as np 
+from tqdm import tqdm 
+import torch 
+from torch.nn.functional import adaptive_avg_pool2d
+
 def epoch_polynomial_mmd(codes_g, codes_r, degree=3, gamma=None, coef0=1, var_at_m=None, ret_var=True):
     '''Compute the polynomial MMD (Maximum Mean Discrepancy)'''
     # Compute the polynomial kernel for generated vs generated, real vs real, and generated vs real

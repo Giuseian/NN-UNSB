@@ -1,4 +1,10 @@
 # Inception V3
+
+import torch.nn as nn
+import torch.nn.functional as F
+import torch 
+import torchvision 
+
 # URL for the pretrained model weights file
 FID_WEIGHTS_URL = 'https://github.com/mseitzer/pytorch-fid/releases/download/fid_weights/pt_inception-2015-12-05-6726825d.pth'
 

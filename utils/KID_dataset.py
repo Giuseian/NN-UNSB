@@ -1,5 +1,17 @@
 """Computing KID for the entire dataset """
 
+import numpy as np 
+from tqdm import tqdm 
+from PIL import Image 
+import torch 
+from torch.nn.functional import adaptive_avg_pool2d
+import os 
+from inception_v3 import InceptionV3
+from sklearn.metrics.pairwise import polynomial_kernel
+import sys 
+
+# Add import LeNet 
+
 #KID for entire dataset
 def get_activations(files, model, batch_size=1, dims=2048,
                     cuda=False, verbose=False):

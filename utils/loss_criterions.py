@@ -1,5 +1,8 @@
 """ Defining Loss Criterions """
 
+import torch.nn as nn 
+import torch 
+
 def criterionNCE(nce_layers):
     """ Used for contrastive learning tasks, calculating loss for feature differences across network layers """
     criterionNCE = []

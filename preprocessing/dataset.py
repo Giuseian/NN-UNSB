@@ -1,9 +1,9 @@
+""" Defining Dataset """
+
 import os
 import cv2
 from torch.utils.data import Dataset
 from torchvision import transforms
-
-""" Defining Dataset """
 
 class ImageDataset(Dataset):
     def __init__(self, img_dir):

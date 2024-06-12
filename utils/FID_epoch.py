@@ -1,5 +1,10 @@
 """ Computing FID per epoch """
 
+import numpy as np
+import torch 
+from torch.nn.functional import adaptive_avg_pool2d
+from scipy.linalg import sqrtm
+
 def epoch_calculate_activation_statistics(images, model, batch_size=128, dims=2048, cuda=False):
     # Set the model to evaluation mode
     model.eval()  

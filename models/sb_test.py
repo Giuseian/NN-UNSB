@@ -1,5 +1,11 @@
 """ Sb Model for Testing """
 
+import torch 
+from utils.loss_criterions import *
+import numpy as np 
+
+#define gen, disc, device 
+
 class SBModel_test(nn.Module):
     """ Initializes the SBModel class, setting up parameters, loss names, model names, visual names, optimizers, and other necessary configurations """
     def __init__(self):
