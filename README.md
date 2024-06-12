@@ -48,6 +48,10 @@ Below there's a graphical representation of the reimplemented network structure:
 
 * **`utils`**: utility scripts to be used during evaluation stage
 
+* **`test.py`**: script to test the model 
+
+* **`train.py`**: script to train the model
+
 
 ## Installation 
 
@@ -63,9 +67,9 @@ Below there's a graphical representation of the reimplemented network structure:
     ```
 TODO: in caso creare un file req.txt e mettere in  caso il comando per installarli nel ambiente 
 
-## Training 
+## Run the Code 
 
-TODO: qui dobbiamo inserire il codice con il quale facciamo partire il training + commenti 
+
 
 ## Results 
  
