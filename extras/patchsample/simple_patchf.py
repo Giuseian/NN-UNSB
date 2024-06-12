@@ -3,8 +3,8 @@ import torch.nn as nn
 import numpy as np
 from models.helper_functions import *
 
-# our simple PatchF function
 
+""" Simplified version of PatchsampleF """
 class PatchSampleF(nn.Module):
     def __init__(self, use_mlp=False, init_type='normal', init_gain=0.02, nc=256, gpu_ids=[]):
         super(PatchSampleF, self).__init__()

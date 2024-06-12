@@ -123,7 +123,12 @@ class SBModel(nn.Module):
         self.optimizer_F.step()  # Updates the parameters of F
 
     def forward(self):
-        """ Diffusion Process, described above """
+        """ The diffusion process gradually adds noise to the images, which is crucial for generating diverse and realistic intermediate 
+        states that the generator network refines.
+        By interpolating between previous states and adding controlled noise, we ensure smooth transitions and avoid abrupt changes in the image states.
+        Using the generator network at each timestep allows us to iteratively improve the quality of the noisy images, aligning them closer to the desired 
+        output distribution """
+        
         tau = 0.01  # Entropy parameter 
         T = 5  # Number of time steps 
         incs = np.array([0] + [1/(i+1) for i in range(T-1)])  # Array of incremental values used to define time steps 
@@ -189,7 +194,10 @@ class SBModel(nn.Module):
         self.fake_B = self.fake[:self.real_A.size(0)]  # Extract "generated zebra" (horse with zebra's features) from self.fake   
 
     def compute_D_loss(self):
-        """ Computation of Discriminator D loss, combining losses for real and fake images """
+        """ It calculates the adversarial loss for the discriminator. It computes separate losses for real and fake images and then 
+        combines them to obtain the total discriminator loss. The latter is scaled by 0.5 to ensure equal contribution from both 
+        fake and real losses. This loss guides the training of the discriminator to better distinguish between real and generated images. """
+        
         bs = self.real_A.size(0)
         fake = self.fake_B.detach()   # Obtained Fake Images 
         std = torch.rand(size=[1]).item()
@@ -202,9 +210,12 @@ class SBModel(nn.Module):
         return self.loss_D
     
     def compute_E_loss(self):
-        """ Computation of Discriminator E loss, aiming to bridge the gap between distributions """
-        bs =  self.real_A.size(0)
+        """ Computation of Discriminator E loss, whose primary goal is to guide the training of netE towards learning meaningful 
+        representations of transition distributions between noisy and generated image pairs. By minimizing the loss and incorporating 
+        regularization techniques, the network aims to align these distributions effectively, facilitating the generation of realistic 
+        and coherent images by the generator network G """
         
+        bs =  self.real_A.size(0)
         XtXt_1 = torch.cat([self.real_A_noisy,self.fake_B.detach()], dim=1)   # Concatenation of noisy input image with the corresponding generated image 
         XtXt_2 = torch.cat([self.real_A_noisy2,self.fake_B2.detach()], dim=1) # Concatenation of noisy input image 2 with the corresponding generated image 2 
         temp = torch.logsumexp(self.netE(XtXt_1, self.time_idx, XtXt_2).reshape(-1), dim=0).mean()  # Entropy term which includes a log-sum-exp term for stability
@@ -214,7 +225,13 @@ class SBModel(nn.Module):
         return self.loss_E
     
     def compute_G_loss(self):
-        """ Compute Generator G Loss, given by the combination of G_GAN, SB and NCE loss """
+        """ It evaluates the overall loss incurred by, encompassing multiple loss components, such as : 
+              ** G_GAN Loss ** : Encourages the generator to produce realistic images 
+              ** Schrödinger Bridge Loss ** : Ensures temporal consistency and distribution alignment 
+              ** Negative Cross Entropy ** : Promotes feature alignment between real and generated images
+            This combination enables the generator to learn effective image generation strategies that produce high-quality images 
+            consistent with the target distribution """
+        
         bs = 1
         tau = 0.01
         lambda_GAN = 1.0
@@ -248,7 +265,9 @@ class SBModel(nn.Module):
         return self.loss_G
         
     def calculate_NCE_loss(self, src, tgt, lambda_NCE):
-        """ Computation of Noise Contrastive Estimation Loss, measuring similarity between patches extracted from source and target images"""
+        """ Computation of Noise Contrastive Estimation Loss, measuring similarity between patches extracted from source and target images. 
+        After applying a weighting factor, it returns the average loss across all layers """
+        
         num_patches = 256
         nce_layers = [0,4,8,12,16]
         num_layers = len(nce_layers)

@@ -1,13 +1,14 @@
 """ Defining Loss Criterions """
 
-
 def criterionNCE(nce_layers):
+    """ Used for contrastive learning tasks, calculating loss for feature differences across network layers """
     criterionNCE = []
     for nce_layer in nce_layers:
         criterionNCE.append(nn.CrossEntropyLoss(reduction='none').to(device))
     return criterionNCE
 
 def criterionGAN():
+    """ Applied in adversarial training, measuring the difference between real and generated samples """
     return nn.MSELoss().to(device)
 
 
