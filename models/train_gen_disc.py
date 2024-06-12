@@ -1,5 +1,5 @@
 from torch.utils.data import DataLoader
-from preprocessing.image_dataset_old import ImageDataset
+from preprocessing.dataset import ImageDataset
 from models.generator.adaptive_conditioned_gen import *
 from models.discriminator.conditioned_ncsn_disc import *
 import torch.optim as optim
