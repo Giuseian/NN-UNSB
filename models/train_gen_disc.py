@@ -1,7 +1,7 @@
 from torch.utils.data import DataLoader
 from preprocessing.dataset import ImageDataset
 from models.generator.adaptive_conditioned_gen import *
-from models.discriminator.conditioned_ncsn_disc import *
+from models.discriminator.ncsn_discriminator import *
 import torch.optim as optim
 import torch.nn as nn
 import matplotlib.pyplot as plt
@@ -20,8 +20,8 @@ train_dataloaderB = DataLoader(train_datasetB, batch_size=1, shuffle=True)
 # Initialize generators and discriminators
 gen_A_to_B = ResnetGenerator_cond(input_nc=3, output_nc=3, ngf=64, n_blocks=9, norm_layer=nn.InstanceNorm2d).to(device)
 gen_B_to_A = ResnetGenerator_cond(input_nc=3, output_nc=3, ngf=64, n_blocks=9, norm_layer=nn.InstanceNorm2d).to(device)
-disc_A = NLayerDiscriminator_ncsn(input_nc=3, ndf=64, n_layers=3, norm_layer=nn.InstanceNorm2d).to(device)
-disc_B = NLayerDiscriminator_ncsn(input_nc=3, ndf=64, n_layers=3, norm_layer=nn.InstanceNorm2d).to(device)
+disc_A = NLayerDiscriminator_ncsn_new(input_nc=3, ndf=64, n_layers=3, norm_layer=nn.InstanceNorm2d).to(device)
+disc_B = NLayerDiscriminator_ncsn_new(input_nc=3, ndf=64, n_layers=3, norm_layer=nn.InstanceNorm2d).to(device)
 
 # Define optimizers
 optimizer_gen = optim.Adam(list(gen_A_to_B.parameters()) + list(gen_B_to_A.parameters()), lr=0.0002, betas=(0.5, 0.999))
