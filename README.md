@@ -42,7 +42,7 @@ Below there's a graphical representation of the reimplemented network structure:
 
 * **`images`**: stores image files used in the project, such as generated images and evaluation plots
 
-* **`models`**: 
+* **`models`**: all sub-networks and models needed to 
 
 * **`options`**: parsers for both train and test so to adjust parameters when needed
 
@@ -59,13 +59,13 @@ Below there's a graphical representation of the reimplemented network structure:
 
 1. Clone the repository:
    ```bash
-    git clone link_nostra_repo
-    cd nome_cartella
+    git clone https://github.com/Giuseian/NN-UNSB.git
+    cd NN-UNSB
     ```
 2. Create and activate a virtual environment:
     ```bash
-    python3 -m venv virtual 
-    source virtual/bin/activate
+    python3 -m venv NN-UNSB-env
+    source NN-UNSB-env/bin/activate
     ```
 
 ## Run the Code 
@@ -74,7 +74,7 @@ Below there's a graphical representation of the reimplemented network structure:
 To run the training script with default parameters, simply execute the following command:
 
 ```bash
-python train.py
+python3 train.py
 ```
 
 You can also customize the training process by specifying command-line arguments. Here are some of the parameters you can adjust in train_options.py:
@@ -88,14 +88,14 @@ You can also customize the training process by specifying command-line arguments
 
 For example, to run the script on GPUs 0 and 1 for 100 epochs, use:
 ```bash
-python train.py --gpu_ids 0 1 --n_epochs 100
+python3 train.py --gpu_ids 0 1 --n_epochs 100
 ```
 
 ### Testing
 To run the test script with default parameters, simply execute the following command:
 
 ```bash
-python test.py
+python3 test.py
 ```
 The script uses a pre-configured argument parser (test_parser) from options.test_options, which includes the following parameters:
 - **num_threads**: Fixed at 0, indicating single-threaded operation.
@@ -107,11 +107,14 @@ You can adjust their values by passing them as a command-line argument.
 
 For example, to set the aspect ratio to 1.5, you would use:
 ```bash
-python test.py --aspect_ratio 1.5
+python3 test.py --aspect_ratio 1.5
 ```
 
 ## Results 
 ### Quantitative Results
+| FID       | KID                | 
+|------------|--------------------|
+| VAL | VAL | 
 
 
 ### Qualitative Results
