@@ -1,7 +1,7 @@
 """ Sb Model for Testing """
 
 class SBModel_test(nn.Module):
-    '''SBModel for testing'''
+    """ Initializes the SBModel class, setting up parameters, loss names, model names, visual names, optimizers, and other necessary configurations """
     def __init__(self):
         super(SBModel_test,self).__init__()
         self.loss_names = ['G_GAN', 'D_real', 'D_fake', 'G', 'NCE','SB']
@@ -43,24 +43,11 @@ class SBModel_test(nn.Module):
         self.forward()   
     
     def set_input(self, dataA, dataB):
-        '''
-        Unpack input data from the dataloader and perform necessary pre-processing steps.
-        Parameters:
-            dataA (torch.Tensor): Tensor containing data samples from domain A.
-            dataB (torch.Tensor): Tensor containing data samples data
-        '''
+        """ Responsible for unpacking input data from the dataloader and performing any necessary preprocessing steps """
         self.real_A = dataA.to(device)
         self.real_B = dataB.to(device)
     
-    def get_current_losses(self):
-        '''Return training losses/errors'''
-        errors_ret = {}
-        for name in self.loss_names:
-            if isinstance(name, str):
-                errors_ret[name] = float(getattr(self, 'loss_' + name))  # float(...) works for both scalar tensor and float number
-        return errors_ret
     
-
     def forward(self):
         '''Forward function'''
         tau = 0.01
