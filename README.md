@@ -67,7 +67,10 @@ Below there's a graphical representation of the reimplemented network structure:
     python3 -m venv NN-UNSB-env
     source NN-UNSB-env/bin/activate
     ```
-
+3. Install requirements:
+   ```bash
+    pip install -r requirements.txt
+    ```
 ## Run the Code 
 
 ### Training
