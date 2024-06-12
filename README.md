@@ -114,7 +114,7 @@ python3 test.py --aspect_ratio 1.5
 ### Quantitative Results
 | FID       | KID                | 
 |------------|--------------------|
-| VAL | VAL | 
+| 101 | 0.082 | 
 
 
 ### Qualitative Results
