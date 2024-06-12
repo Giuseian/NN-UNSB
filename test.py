@@ -1,17 +1,29 @@
+import os
+import torch
+from torchvision.utils import save_image
+from models.helper_functions import *
+from models.networks import *
+from preprocessing.image_dataset_cycle import *
+from preprocessing.dataset import *
+from models.sb_test import *
+from inception import InceptionV3 as inception_v3
+from options.test_options import test_parser
+device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+
 # Create output images directories
 results_dir = '/kaggle/working/results_dir'
 if not os.path.exists(results_dir):
     os.makedirs('/kaggle/working/results_dir')
 
 if __name__ == '__main__':
-    # Initialize test parameters
-    aspect_ratio = 1.0
-    
-    # Hard-code some parameters for the test
-    num_threads = 0   # Test code only supports num_threads = 1
-    batch_size = 1    # Test code only supports batch_size = 1
-    serial_batches = True  # Disable data shuffling
-    no_flip = True    # No flip
+
+    args = test_parser.parse_args()
+
+    num_threads = args.num_threads
+    batch_size = args.batch_size
+    serial_batches = args.serial_batches
+    no_flip = args.no_flip
+    aspect_ratio = args.aspect_ratio
     
     sb_model_test = SBModel_test().to(device)
     

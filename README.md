@@ -44,6 +44,8 @@ Below there's a graphical representation of the reimplemented network structure:
 
 * **`models`**: 
 
+* **`options`**: parsers for both train and test so to adjust parameters when needed
+
 * **`preprocessing`**: scripts dedicated to data cleaning, transformation, and preparation 
 
 * **`utils`**: utility scripts to be used during evaluation stage
@@ -65,11 +67,48 @@ Below there's a graphical representation of the reimplemented network structure:
     python3 -m venv virtual 
     source virtual/bin/activate
     ```
-TODO: in caso creare un file req.txt e mettere in  caso il comando per installarli nel ambiente 
 
 ## Run the Code 
 
+### Training
+To run the training script with default parameters, simply execute the following command:
 
+```bash
+python train.py
+```
+
+You can also customize the training process by specifying command-line arguments. Here are some of the parameters you can adjust in train_options.py:
+- **total_iters**: Total number of iterations (default is 0)
+- **optimize_time**: Time for optimization (default is 0.1)
+- **epoch_count**: Starting count of epochs (default is 1)
+- **n_epochs**: Number of epochs (default is 90)
+- **n_epochs_decay**: Number of decaying epochs (default is 90)
+- **print_freq**: Frequency of printing outputs (default is 100)
+- **gpu_ids**: List of GPU IDs for training (default is 1)
+
+For example, to run the script on GPUs 0 and 1 for 100 epochs, use:
+```bash
+python train.py --gpu_ids 0 1 --n_epochs 100
+```
+
+### Testing
+To run the test script with default parameters, simply execute the following command:
+
+```bash
+python test.py
+```
+The script uses a pre-configured argument parser (test_parser) from options.test_options, which includes the following parameters:
+- **num_threads**: Fixed at 0, indicating single-threaded operation.
+- **batch_size**: Fixed at 1, as the test setup is designed for single-instance evaluation.
+- **serial_batches**: Ensures the data is processed in the order it is provided (True by default).
+- **no_flip**: Ensures no flipping augmentation is applied to the data (True by default).
+- **aspect_ratio**: Configurable through command line to adjust the aspect ratio of the output images.
+You can adjust their values by passing them as a command-line argument.
+
+For example, to set the aspect ratio to 1.5, you would use:
+```bash
+python test.py --aspect_ratio 1.5
+```
 
 ## Results 
 ### Quantitative Results

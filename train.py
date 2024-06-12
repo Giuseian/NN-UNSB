@@ -1,20 +1,38 @@
+import argparse
+import os
+import time
+import torch
+from torchvision.utils import save_image
+from inception import InceptionV3
+from utils import visualize_images, epoch_calculate_fretchet, epoch_calculate_activations, epoch_compute_mmd_simple
+from models.sb_train import *
+from inception import InceptionV3 as inception_v3
+from options.train_options import train_parser
+
 # Create output images directories
 generated_images = '/kaggle/working/generated_images'
 if not os.path.exists(generated_images):
     os.makedirs('/kaggle/working/generated_images')
+
+device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
 if __name__ == '__main__':
 
     # Model 
     sb_model_compl = SBModel().to(device)
     
-    total_iters = 0      
-    optimize_time = 0.1
-    epoch_count = 1
-    n_epochs = 90
-    n_epochs_decay = 90
-    print_freq = 100 
-    gpu_ids = [1]
+    # Parse the arguments
+    args = train_parser.parse_args()
+
+    # use args to access the arguments
+    total_iters = args.total_iters
+    optimize_time = args.optimize_time
+    epoch_count = args.epoch_count
+    n_epochs = args.n_epochs
+    n_epochs_decay = args.n_epochs_decay
+    print_freq = args.print_freq
+    gpu_ids = args.gpu_ids
+
     output_dir = "/kaggle/working/generated_images"
     
     # Lists for Losses, FID and KID metrics 
