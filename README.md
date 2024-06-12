@@ -138,7 +138,7 @@ Plotting FID and KID for testing:
 | Train | 197.76 | 0.131 |
 | Test  | 101.70 | 0.082 |
 
-Plotting FID, KID and losses for training:
+Plotting FID, KID an losses for training:
 <p align="center">
   <img src="images/FID__train_400.png" alt="FID" width="40%" />
   <img src="images/KID_train_400.png" alt="KID" width="40%" />
