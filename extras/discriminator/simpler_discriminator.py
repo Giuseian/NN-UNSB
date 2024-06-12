@@ -5,12 +5,12 @@ from models.helper_functions import *
 """" Simpler version of Discriminator """
 
 class D_NLayersMulti(nn.Module):
-    '''
+    """
     This discriminator network is designed for conditional behavior, 
     incorporating multiple convolutional layers to process input images. 
     Each convolutional layer is accompanied by a linear transformation of timestep embeddings, 
     to enhance discrimination based on the provided timestep context.
-    '''
+    """
     # Initialize the discriminator with multiple convolutional layers.
     def __init__(self, input_nc, ndf=64, n_layers=3, norm_layer=nn.BatchNorm2d):
         super().__init__()

@@ -1,6 +1,7 @@
 from models.helper_functions import *
 
-# Simple Resnet with Adaptive Conditioning: simplified version of UNSB generator
+"""Simple Resnet with Adaptive Conditioning"""
+# It's a simplified version of the UNSB generator
 
 class ResnetBlockS_Cond(nn.Module):
     # Constructor for a single ResNet block with conditional inputs
