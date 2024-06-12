@@ -92,5 +92,12 @@ TODO: in caso creare un file req.txt e mettere in  caso il comando per installar
 ## Acknowledgments
 * The original paper:
 
-   ```
-   ```
+```bib
+@InProceedings{
+  kim2023unsb,
+  title={Unpaired Image-to-Image Translation via Neural Schrödinger Bridge},
+  author={Beomsu Kim and Gihyun Kwon and Kwanyoung Kim and Jong Chul Ye},
+  booktitle={ICLR},
+  year={2024}
+}
+```
