@@ -139,9 +139,17 @@ Qualitative Results on 400 epochs:
   <img src="images/zebra2_400.png" alt="Zebra 2" width="30%" />
   <img src="images/zebra3_results.jpg" alt="Zebra 3" width="30%" />
 </p>
+
+Plotting FID and KID for training:
 <p align="center">
-  <img src="images/FID_values_140_epochs.png" alt="FID" width="40%" />
-  <img src="images/KID_values_140_epochs.png" alt="KID" width="40%" />
+  <img src="images/FID__train_400.png" alt="FID" width="40%" />
+  <img src="images/KID_train_400.png" alt="KID" width="40%" />
+</p>
+
+Plotting FID and KID for testing:
+<p align="center">
+  <img src="images/FID_test_400.png" alt="FID" width="30%" />
+  <img src="images/KID_test_400.png" alt="KID" width="30%" />
 </p>
 
 
