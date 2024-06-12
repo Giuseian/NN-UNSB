@@ -140,6 +140,21 @@ Qualitative Results on 400 epochs:
   <img src="images/zebra3_results.jpg" alt="Zebra 3" width="30%" />
 </p>
 
+### Evaluation
+#### Results in 200 epochs
+Plotting FID and KID for training:
+<p align="center">
+  <img src="images/FID_train_200.png" alt="FID" width="40%" />
+  <img src="images/KID_train_200.png" alt="KID" width="40%" />
+</p>
+
+Plotting FID and KID for testing:
+<p align="center">
+  <img src="images/FID_test_200.png" alt="FID" width="30%" />
+  <img src="images/KID_test_200.png" alt="KID" width="30%" />
+</p>
+
+#### Results in 400 epochs
 Plotting FID and KID for training:
 <p align="center">
   <img src="images/FID__train_400.png" alt="FID" width="40%" />
