@@ -126,13 +126,19 @@ Results on 400 epochs:
 
 
 ### Qualitative Results
+Qualitative Results on 200 epochs:
 <p align="center">
   <img src="images/zebra1_results.png" alt="Zebra 1" width="30%" />
   <img src="images/zebra2_results.png" alt="Zebra 2" width="30%" />
-  <img src="images/zebra3_results.jpg" alt="Zebra 3" width="30%" />
+  <img src="images/zebra1_200.png" alt="Zebra 3" width="30%" />
 </p>
 
-
+Qualitative Results on 400 epochs:
+<p align="center">
+  <img src="images/zebra1_400.png" alt="Zebra 1" width="30%" />
+  <img src="images/zebra2_400.png" alt="Zebra 2" width="30%" />
+  <img src="images/zebra3_results.jpg" alt="Zebra 3" width="30%" />
+</p>
 <p align="center">
   <img src="images/FID_values_140_epochs.png" alt="FID" width="40%" />
   <img src="images/KID_values_140_epochs.png" alt="KID" width="40%" />
