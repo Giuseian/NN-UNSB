@@ -42,7 +42,7 @@ Below there's a graphical representation of the reimplemented network structure:
 
 * **`images`**: stores image files used in the project, such as generated images and evaluation plots
 
-* **`models`**: all sub-networks and models needed to 
+* **`models`**: all sub-networks and models needed to achieve our task
 
 * **`options`**: parsers for both train and test so to adjust parameters when needed
 
