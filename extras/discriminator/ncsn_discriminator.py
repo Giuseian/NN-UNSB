@@ -2,9 +2,14 @@ from torch import nn
 import torch
 from models.helper_functions import *
 
-# Discriminator with conditional convolution blocks for processing input images
+"""Discriminator with conditional convolution blocks"""
+
 class NLayerDiscriminator_ncsn_new(nn.Module):
-    """Discriminator that uses conditional convolution blocks to process input images."""
+    """ This discriminator architecture leverages conditional convolution blocks 
+    to incorporate additional information such as timestep embeddings into the standard convolution process. 
+    This design allows it to effectively adapt its behavior based on additional conditional inputs, 
+    enhancing its capability to distinguish between real and generated images in scenarios where 
+    temporal dynamics or other conditions are relevant."""
     def __init__(self, input_nc, ndf=64, n_layers=3, norm_layer=nn.BatchNorm2d):
         """Initialize the discriminator with conditional convolution blocks."""
         super(NLayerDiscriminator_ncsn_new, self).__init__()

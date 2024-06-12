@@ -2,7 +2,8 @@ from models.helper_functions import *
 import functools 
 import torch.nn as nn
 
-# Conditional ResNet Generator with Adaptive Conditioning
+"""Conditional ResNet Generator with Adaptive Conditioning"""
+
 # The generator uses a series of ResNet blocks with adaptive conditioning to generate images.
 # The generator also uses time-based conditioning to generate images at different time steps.
 
