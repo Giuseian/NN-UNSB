@@ -2,7 +2,7 @@ import torch
 import torch.nn as nn
 from models.helper_functions import * 
 
-# Paper's discriminator -> Old Conditioned_NCSN_disc
+# Paper's implementation of the discriminator
 
 class NLayerDiscriminator_ncsn(nn.Module):
     """Defines a PatchGAN discriminator with conditional input"""
