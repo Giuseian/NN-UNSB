@@ -61,6 +61,7 @@ Below there's a graphical representation of the reimplemented network structure:
    ```bash
     git clone https://github.com/Giuseian/NN-UNSB.git
     cd NN-UNSB
+    pip install -r requirements.txt
     ```
 2. Create and activate a virtual environment:
     ```bash
