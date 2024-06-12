@@ -72,8 +72,10 @@ TODO: in caso creare un file req.txt e mettere in  caso il comando per installar
 
 
 ## Results 
- 
+### Quantitative Results
 
+
+### Qualitative Results
 <p align="center">
   <img src="images/zebra1_results.png" alt="Zebra 1" width="30%" />
   <img src="images/zebra2_results.png" alt="Zebra 2" width="30%" />
@@ -86,3 +88,9 @@ TODO: in caso creare un file req.txt e mettere in  caso il comando per installar
   <img src="images/KID_values_140_epochs.png" alt="KID" width="40%" />
 </p>
 
+
+## Acknowledgments
+* The original paper:
+
+   ```
+   ```

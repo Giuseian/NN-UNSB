@@ -1,3 +1,5 @@
+from models.networks import *
+
 """ Sb Model defined for training """
 
 class SBModel(nn.Module):
