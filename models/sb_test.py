@@ -1,17 +1,17 @@
 """ Sb Model for Testing """
-
+from models.networks import *
 import torch 
 from utils.loss_criterions import *
 import numpy as np 
 
-#define gen, disc, device 
+""" Sb Model defined for testing. Generator (namely gen) is defined in networks.py """
+
+device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
 class SBModel_test(nn.Module):
     """ Initializes the SBModel class, setting up parameters, loss names, model names, visual names, optimizers, and other necessary configurations """
     def __init__(self):
         super(SBModel_test,self).__init__()
-        #self.loss_names = ['G_GAN', 'D_real', 'D_fake', 'G', 'NCE','SB']
-        #self.model_names = ['G']
         self.visual_names = ['real']
         self.T = 5
         for NFE in range(self.T):
@@ -20,22 +20,11 @@ class SBModel_test(nn.Module):
         self.optimizers = []
         self.tau = 0.1 
         self.device = device
-        #self.lambda_GAN = 1.0   
-        #self.lambda_NCE = 1.0 
-        #self.lambda_SB = 1.0
-        #self.nce_idt = True
-        #self.nce_layers = [0,4,8,12,16] 
-        #self.num_patches = 256
         self.netG = gen
-        #self.netF = netF 
         self.ngf = 64
-        #self.criterionNCE = criterionNCE(self.nce_layers)
-        #self.criterionGAN = GANLoss().to(device)
         self.lr = 0.00001
         self.beta1 = 0.5
         self.beta2 = 0.999
-        self.current_epoch = 0
-        #self.total_epochs = 180
         
         # optimizers
         self.optimizer_G = torch.optim.Adam(self.netG.parameters(), lr=self.lr, betas=(self.beta1, self.beta2))
@@ -58,7 +47,7 @@ class SBModel_test(nn.Module):
     
     
     def forward(self):
-        """ function processes the input tensor through a series of timesteps, refining it iteratively by 
+        """ It processes the input tensor through a series of timesteps, refining it iteratively by 
         blending it with noise and the generator's output at each step. The time steps are predefined and normalized, 
         and a random time index is selected to determine which time step to use for each batch element. The generator 
         is used in evaluation mode to produce outputs based on the current input tensor, the time step, and some random noise. """

@@ -10,13 +10,18 @@ from preprocessing.dataset import *
 from preprocessing.dataset import *
 from torch.utils.data import DataLoader
 
+
+""" Before creating the final diffusion model, we tested our definitive generator and discriminator using CycleGAN training to 
+    better understand their functionality. Here we report the code that was runned on kaggle with GPUP100  """
+
+
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
 # Define the dataset 
-path_trainA = '/kaggle/input/horse2zebra-train/small_trainA'
-path_trainB = '/kaggle/input/horse2zebra-train/small_trainB'
-path_testA = '/kaggle/input/horse2zebra-new/testA'
-path_testB = '/kaggle/input/horse2zebra-new/testB'
+path_trainA = 'horse2zebra//small_trainA'
+path_trainB = 'horse2zebra//small_trainB'
+path_testA = 'horse2zebra//testA'
+path_testB = 'horse2zebra//testB'
 
 # apply transformations to the dataset
 train_datasetA = ImageDataset(img_dir=path_trainA)

@@ -4,7 +4,7 @@ import torch.nn.functional as F
 from models.helper_functions import *
 import functools
 
-""" Here we define the networks needed for our Diffusion Model """
+""" Here we define the networks needed for our Diffusion Model. Below, we provide subnetworks' instances, used to run our diffusion model """
 
 # Conditional ResNet Generator with Adaptive Conditioning to generate images at different time steps
 class ResnetGenerator_cond(nn.Module):
@@ -212,3 +212,8 @@ class PatchSampleF(nn.Module):
         return return_feats, return_ids 
     
     
+### Defining Used Subnetworks 
+gen = ResnetGenerator_cond(input_nc=3, output_nc=3, ngf=64, n_blocks=9, norm_layer=nn.InstanceNorm2d).to(device) 
+disc = NLayerDiscriminator_ncsn_new(input_nc=3, ndf=64, n_layers=3, norm_layer=nn.InstanceNorm2d).to(device) 
+netE = NLayerDiscriminator_ncsn_new(input_nc=3*4, ndf=64, n_layers=3, norm_layer=nn.InstanceNorm2d).to(device)
+netF = PatchSampleF(use_mlp=True, init_type='normal', init_gain=0.02, nc=256).to(device)

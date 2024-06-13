@@ -3,7 +3,7 @@ from models.helper_functions import *
 from utils.loss_criterions import *
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
-""" Sb Model defined for training """
+""" Sb Model defined for training. Generator, Discriminator and PatchSample (namely gen, disc, netE and netF are defined in networks.py)"""
 
 class SBModel(nn.Module):
     
