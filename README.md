@@ -93,6 +93,7 @@ You can also customize the training process by specifying command-line arguments
 - **n_epochs_decay**: Number of decaying epochs (default is 90)
 - **print_freq**: Frequency of printing outputs (default is 100)
 - **gpu_ids**: List of GPU IDs for training (default is 1)
+- **create_dir**: Directory to create to store output images
 
 For example, to run the script on GPUs 0 and 1 for 100 epochs, use:
 ```bash
@@ -112,6 +113,7 @@ The script uses a pre-configured argument parser (test_parser) from options.test
 - **no_flip**: Ensures no flipping augmentation is applied to the data (True by default).
 - **aspect_ratio**: Configurable through command line to adjust the aspect ratio of the output images.
 You can adjust their values by passing them as a command-line argument.
+- **create_dir**: Directory to create to store output images
 
 For example, to set the aspect ratio to 1.5, you would use:
 ```bash
