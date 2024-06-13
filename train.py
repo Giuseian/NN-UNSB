@@ -28,7 +28,7 @@ if __name__ == '__main__':
     gpu_ids = args.gpu_ids
 
     # create output images directory
-    output_dir = os.makedirs(args.create_dir, exist_ok=True)
+    generated_images = os.makedirs(args.create_dir, exist_ok=True)
     
     # Lists for Losses, FID and KID metrics 
     losses_list = []

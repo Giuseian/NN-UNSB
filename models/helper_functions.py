@@ -9,6 +9,8 @@ import math
 
 """ Here we define helper functions that we will use throughout the project """
 
+device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+
 # Define padding layer based on type for use in convolutional layers
 def get_pad_layer(pad_type):
     if pad_type in ['reflect', 'refl']:
