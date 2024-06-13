@@ -37,7 +37,7 @@ Below there's a graphical representation of the reimplemented network structure:
   <img src="images/structure_network.png">
 </p>
 
-## Repositiory Content
+## Repository Content
 * **`extras`**: contains additional networks that were developed during the re-implementation of the paper so to experiment several techniques
 
 * **`images`**: stores image files used in the project, such as generated images and evaluation plots
@@ -61,12 +61,15 @@ Below there's a graphical representation of the reimplemented network structure:
    ```bash
     git clone https://github.com/Giuseian/NN-UNSB.git
     cd NN-UNSB
-    pip install -r requirements.txt
     ```
 2. Create and activate a virtual environment:
     ```bash
     python3 -m venv NN-UNSB-env
     source NN-UNSB-env/bin/activate
+    ```
+3. Install requirements:
+   ```bash
+   pip install -r requirements.txt
     ```
 
 ## Run the Code 
