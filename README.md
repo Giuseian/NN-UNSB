@@ -128,6 +128,7 @@ For example, to set the aspect ratio to 1.5, you would use:
 ```bash
 python3 test.py --aspect_ratio 1.5
 ```
+
 **Warning**: the model was trained and tested on "kaggle" by using GPU-P100, so it's better to run directly the notebook provided in the repository
 
 ## Results 
