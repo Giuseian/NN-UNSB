@@ -40,6 +40,8 @@ Below there's a graphical representation of the reimplemented network structure:
 ## Repository Content
 * **`extras`**: contains additional networks that were developed during the re-implementation of the paper so to experiment several techniques
 
+* **`horse2zebra`**: this folder contains sub-folders used to train and test the model
+
 * **`images`**: stores image files used in the project, such as generated images and evaluation plots
 
 * **`models`**: all sub-networks and models needed to achieve our task
@@ -49,6 +51,8 @@ Below there's a graphical representation of the reimplemented network structure:
 * **`preprocessing`**: scripts dedicated to data cleaning, transformation, and preparation 
 
 * **`utils`**: utility scripts to be used during evaluation stage
+
+* **`nn-unsb.ipynb`**: our runnable notebook. It contains all sub-networks and models used to complete the required task. It was trained and tested on "kaggle" using GPU-P100
 
 * **`test.py`**: script to test the model 
 
@@ -113,6 +117,7 @@ For example, to set the aspect ratio to 1.5, you would use:
 ```bash
 python3 test.py --aspect_ratio 1.5
 ```
+**Warning**: the model was trained and tested on "kaggle" by using GPU-P100, so it's better to run directly the notebook provided in the readme
 
 ## Results 
 ### Quantitative Results
