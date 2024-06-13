@@ -30,7 +30,7 @@ if __name__ == '__main__':
     
     sb_model_test = SBModel_test().to(device)
     
-    pretrained_dict = torch.load("/kaggle/working/our_pretrained_sb_model.pth")
+    pretrained_dict = torch.load("/models/our_pretrained_sb_model.pth")
     model_dict = sb_model_test.state_dict()
     
     fid_list_test = []
