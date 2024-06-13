@@ -8,3 +8,4 @@ test_parser.add_argument('--batch_size', type=int, default=1, help='Batch size, 
 test_parser.add_argument('--serial_batches', action='store_true', default=True, help='Disable data shuffling, fixed as True')
 test_parser.add_argument('--no_flip', action='store_true', default=True, help='No flip, fixed as True')
 test_parser.add_argument('--aspect_ratio', type=float, default=1.0, help='Aspect ratio for the test')
+test_parser.add_argument('--create_dir', type=str, default='/kaggle/working/test_dir', help='Directory to create for output images')

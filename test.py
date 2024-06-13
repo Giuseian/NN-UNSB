@@ -8,12 +8,12 @@ from preprocessing.dataset import *
 from models.sb_test import *
 from inception import InceptionV3 as inception_v3
 from options.test_options import test_parser
+from utils.FID_dataset import *
+from utils.FID_epoch import *
+from utils.loss_criterions import *
+from utils.KID_dataset import *
+from utils.KID_epoch import *
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-
-# Create output images directories
-results_dir = '/kaggle/working/results_dir'
-if not os.path.exists(results_dir):
-    os.makedirs('/kaggle/working/results_dir')
 
 if __name__ == '__main__':
 
@@ -24,6 +24,9 @@ if __name__ == '__main__':
     serial_batches = args.serial_batches
     no_flip = args.no_flip
     aspect_ratio = args.aspect_ratio
+
+    # create output images directory
+    results_dir = os.makedirs(args.create_dir, exist_ok=True)
     
     sb_model_test = SBModel_test().to(device)
     

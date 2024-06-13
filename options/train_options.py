@@ -9,3 +9,4 @@ train_parser.add_argument('--n_epochs', type=int, default=90, help='Number of ep
 train_parser.add_argument('--n_epochs_decay', type=int, default=90, help='Number of decaying epochs')
 train_parser.add_argument('--print_freq', type=int, default=100, help='Frequency of printing outputs')
 train_parser.add_argument('--gpu_ids', type=int, nargs='+', default=[1], help='List of GPU IDs')
+train_parser.add_argument('--create_dir', type=str, default='/kaggle/working/generated_images', help='Directory to create for output images')

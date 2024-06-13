@@ -9,11 +9,6 @@ from models.sb_train import *
 from inception import InceptionV3 as inception_v3
 from options.train_options import train_parser
 
-# Create output images directories
-generated_images = '/kaggle/working/generated_images'
-if not os.path.exists(generated_images):
-    os.makedirs('/kaggle/working/generated_images')
-
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
 if __name__ == '__main__':
@@ -33,7 +28,8 @@ if __name__ == '__main__':
     print_freq = args.print_freq
     gpu_ids = args.gpu_ids
 
-    output_dir = "/kaggle/working/generated_images"
+    # create output images directory
+    output_dir = os.makedirs(args.create_dir, exist_ok=True)
     
     # Lists for Losses, FID and KID metrics 
     losses_list = []

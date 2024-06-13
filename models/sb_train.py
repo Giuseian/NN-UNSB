@@ -1,6 +1,7 @@
 from models.networks import *
 from models.helper_functions import *
 from utils.loss_criterions import *
+device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
 """ Sb Model defined for training """
 
