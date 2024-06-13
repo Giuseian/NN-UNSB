@@ -31,8 +31,6 @@ class SBModel(nn.Module):
         self.lr = 0.00001
         self.beta1 = 0.5
         self.beta2 = 0.999 
-        self.current_epoch = 0
-        self.total_epochs = 180
         
         # Defining Optimizers
         self.optimizer_G = torch.optim.Adam(self.netG.parameters(), lr=self.lr, betas=(self.beta1, self.beta2))

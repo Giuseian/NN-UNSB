@@ -17,7 +17,7 @@ class SBModel_test(nn.Module):
         for NFE in range(self.T):
                 fake_name = 'fake_' + str(NFE+1)
                 self.visual_names.append(fake_name)
-        self.optimizers = []
+                
         self.tau = 0.1 
         self.device = device
         self.netG = gen
@@ -25,9 +25,6 @@ class SBModel_test(nn.Module):
         self.lr = 0.00001
         self.beta1 = 0.5
         self.beta2 = 0.999
-        
-        # optimizers
-        self.optimizer_G = torch.optim.Adam(self.netG.parameters(), lr=self.lr, betas=(self.beta1, self.beta2))
         
         
     def data_dependent_initialize(self, dataA,dataB): 
