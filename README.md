@@ -52,7 +52,7 @@ Below there's a graphical representation of the reimplemented network structure:
 
 * **`utils`**: utility scripts to be used during evaluation stage
 
-* **`nn-unsb.ipynb`**: our runnable notebook. It contains all sub-networks and models used to complete the required task. It was trained and tested on "kaggle" using GPU-P100. To visualize all images contained in it it's better to open it in local on Visual Studio Code.
+* **`nn-unsb.ipynb`**: our runnable notebook. It contains all sub-networks and models used to complete the required task. It was trained and tested on "kaggle" using GPU-P100 
 
 * **`test.py`**: script to test the model 
 
