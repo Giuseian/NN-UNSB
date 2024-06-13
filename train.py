@@ -7,6 +7,7 @@ from utils import visualize_images, epoch_calculate_fretchet, epoch_calculate_ac
 from models.sb_train import *
 from utils.inception_v3 import InceptionV3 as inception_v3
 from options.train_options import train_parser
+from preprocessing.dataset import *
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
@@ -17,6 +18,9 @@ if __name__ == '__main__':
     
     # Parse the arguments
     args = train_parser.parse_args()
+    
+    # create output images directory
+    generated_images = os.makedirs(args.create_dir, exist_ok=True)
 
     # use args to access the arguments
     total_iters = args.total_iters
@@ -26,9 +30,25 @@ if __name__ == '__main__':
     n_epochs_decay = args.n_epochs_decay
     print_freq = args.print_freq
     gpu_ids = args.gpu_ids
-
-    # create output images directory
-    generated_images = os.makedirs(args.create_dir, exist_ok=True)
+    BATCH_SIZE = args.batch_size
+    dataroot = args.dataroot
+    path_trainA = args.path_trainA
+    path_trainB = args.path_trainB
+    path_testA = args.path_testA
+    path_testB = args.path_testB 
+    
+    # Initialize datasets for training and testing using the predefined ImageDataset class.
+    train_datasetA = ImageDataset(img_dir=path_trainA)  # Dataset of horse images for training.
+    train_datasetB = ImageDataset(img_dir=path_trainB)  # Dataset of zebra images for training.
+    test_datasetA = ImageDataset(img_dir=path_testA)    # Dataset of horse images for testing.
+    test_datasetB = ImageDataset(img_dir=path_testB)    # Dataset of zebra images for testing.
+    
+    # Create DataLoaders for the datasets to manage loading and batching of data during training and testing.
+    train_dataloaderA = DataLoader(train_datasetA, batch_size=BATCH_SIZE, shuffle=True)  # DataLoader for horse images in training.
+    train_dataloaderB = DataLoader(train_datasetB, batch_size=BATCH_SIZE, shuffle=True)  # DataLoader for zebra images in training.
+    test_dataloaderA = DataLoader(test_datasetA, batch_size=BATCH_SIZE, shuffle=True)     # DataLoader for horse images in testing.
+    test_dataloaderB = DataLoader(test_datasetB, batch_size=BATCH_SIZE, shuffle=True)     # DataLoader for zebra images in testing.
+    
     
     # Lists for Losses, FID and KID metrics 
     losses_list = []

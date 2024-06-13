@@ -86,6 +86,12 @@ python3 train.py
 ```
 
 You can also customize the training process by specifying command-line arguments. Here are some of the parameters you can adjust in train_options.py:
+- **dataroot**: it contains the path to the images of our dataset
+- **path_trainA**: path to train dataset A (default is our samller version)
+- **path_trainB**: path to train dataset B (default is our samller version)
+- **path_testA**: path to test dataset A 
+- **path_testB**: path to test dataset B
+- **batch_size**: set to 1 by default
 - **total_iters**: Total number of iterations (default is 0)
 - **optimize_time**: Time for optimization (default is 0.1)
 - **epoch_count**: Starting count of epochs (default is 1)
@@ -107,6 +113,9 @@ To run the test script with default parameters, simply execute the following com
 python3 test.py
 ```
 The script uses a pre-configured argument parser (test_parser) from options.test_options, which includes the following parameters:
+- **dataroot**: it contains the path to the images of our dataset
+- **path_testA**: path to test dataset A 
+- **path_testB**: path to test dataset B
 - **num_threads**: Fixed at 0, indicating single-threaded operation.
 - **batch_size**: Fixed at 1, as the test setup is designed for single-instance evaluation.
 - **serial_batches**: Ensures the data is processed in the order it is provided (True by default).
@@ -119,7 +128,7 @@ For example, to set the aspect ratio to 1.5, you would use:
 ```bash
 python3 test.py --aspect_ratio 1.5
 ```
-**Warning**: the model was trained and tested on "kaggle" by using GPU-P100, so it's better to run directly the notebook provided in the readme
+**Warning**: the model was trained and tested on "kaggle" by using GPU-P100, so it's better to run directly the notebook provided in the repository
 
 ## Results 
 ### Quantitative Results

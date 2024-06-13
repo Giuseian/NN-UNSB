@@ -19,15 +19,24 @@ if __name__ == '__main__':
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     
     args = test_parser.parse_args()
-
+    
+    # create output images directory
+    results_dir = os.makedirs(args.create_dir, exist_ok=True)
+    
+    dataroot = args.dataroot 
+    path_testA = args.path_testA
+    path_testB = args.path_testB 
     num_threads = args.num_threads
-    batch_size = args.batch_size
+    BATCH_SIZE = args.batch_size
     serial_batches = args.serial_batches
     no_flip = args.no_flip
     aspect_ratio = args.aspect_ratio
-
-    # create output images directory
-    results_dir = os.makedirs(args.create_dir, exist_ok=True)
+    
+    # Defining Dataset and Dataloader 
+    test_datasetA = ImageDataset(img_dir=path_testA)    # Dataset of horse images for testing.
+    test_datasetB = ImageDataset(img_dir=path_testB)    # Dataset of zebra images for testing.
+    test_dataloaderA = DataLoader(test_datasetA, batch_size=BATCH_SIZE, shuffle=True)     # DataLoader for horse images in testing.
+    test_dataloaderB = DataLoader(test_datasetB, batch_size=BATCH_SIZE, shuffle=True)     # DataLoader for zebra images in testing.
     
     sb_model_test = SBModel_test().to(device)
     
