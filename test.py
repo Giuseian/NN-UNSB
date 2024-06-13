@@ -3,7 +3,6 @@ import torch
 from torchvision.utils import save_image
 from models.helper_functions import *
 from models.networks import *
-from preprocessing.image_dataset_cycle import *
 from preprocessing.dataset import *
 from models.sb_test import *
 from inception import InceptionV3 as inception_v3
@@ -13,10 +12,12 @@ from utils.FID_epoch import *
 from utils.loss_criterions import *
 from utils.KID_dataset import *
 from utils.KID_epoch import *
-device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+
 
 if __name__ == '__main__':
 
+    device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+    
     args = test_parser.parse_args()
 
     num_threads = args.num_threads

@@ -3,10 +3,9 @@ import os
 import time
 import torch
 from torchvision.utils import save_image
-from inception import InceptionV3
 from utils import visualize_images, epoch_calculate_fretchet, epoch_calculate_activations, epoch_compute_mmd_simple
 from models.sb_train import *
-from inception import InceptionV3 as inception_v3
+from utils.inception_v3 import InceptionV3 as inception_v3
 from options.train_options import train_parser
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
@@ -29,7 +28,7 @@ if __name__ == '__main__':
     gpu_ids = args.gpu_ids
 
     # create output images directory
-    output_dir = os.makedirs(args.create_dir, exist_ok=True)
+    generated_images = os.makedirs(args.create_dir, exist_ok=True)
     
     # Lists for Losses, FID and KID metrics 
     losses_list = []
