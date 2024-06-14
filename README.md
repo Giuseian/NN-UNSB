@@ -133,7 +133,7 @@ python3 test.py --aspect_ratio 1.5
 
 ## Results 
 ### Quantitative Results
-#### Results on 200 epochs:
+#### Results on 200 images:
 |          | FID                | KID                |
 |------------|--------------------|--------------------|
 | Train | 195.77 | 0.135 |
@@ -152,7 +152,7 @@ Plotting FID and KID for testing:
   <img src="images/KID_test_200.png" alt="KID" width="30%" />
 </p>
 
-#### Results on 400 epochs:
+#### Results on 400 images:
 |          | FID                | KID                |
 |------------|--------------------|--------------------|
 | Train | 197.76 | 0.131 |
